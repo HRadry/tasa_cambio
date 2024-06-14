@@ -22,7 +22,7 @@ async function connectToDB() {
 }
 
 //obtener las tasas de cambio
-async function getTasaCambio() {
+async function getTC() {
     const myToken = '18eadfc093eaecb7b3750ce1a669bdd9db41ad1fcb1bcd2ae38875bf024b9772';
     const url = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718,SF46410/datos/oportuno?token=${myToken}`;
     try {
@@ -65,7 +65,7 @@ async function showTC() {
 //Ejecutar
 (async () => {
     await connectToDB();
-    const tasas = await getTasaCambio();
+    const tasas = await getTC();
 
     if (tasas) {
         await storeTC(tasas?.date, tasas?.tasaEUR, tasas?.tasaEUR)
